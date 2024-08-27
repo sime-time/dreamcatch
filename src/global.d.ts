@@ -1,6 +1,7 @@
 /// <reference types="@solidjs/start/env" />
 
 import type { Request as CfRequest, ExecutionContext } from "@cloudflare/workers-types";
+import PocketBase from "pocketbase"
 
 export interface CfPagesEnv {
   ASSETS: { fetch: (request: CfRequest) => Promise<Response> };
@@ -11,7 +12,7 @@ export interface CfPagesEnv {
 
   // Environment variables
   POCKETBASE_URL: string;
-  POCKETBASE_ADMIN: string;
+  POCKETBASE_EMAIL: string;
   POCKETBASE_PASSWORD: string;
 }
 
@@ -23,5 +24,11 @@ declare module "vinxi/http" {
       env: CfPagesEnv;
       context: ExecutionContext;
     };
+  }
+}
+
+declare module "@solidjs/start/server" {
+  interface RequestEventLocals {
+    pb: PocketBase;
   }
 }

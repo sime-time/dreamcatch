@@ -1,6 +1,7 @@
 import { defineConfig } from "@solidjs/start/config";
 
 export default defineConfig({
+  middleware: "./src/util/middleware",
   server: {
     preset: "cloudflare-pages",
     rollupConfig: {
