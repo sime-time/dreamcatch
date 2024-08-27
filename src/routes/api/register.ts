@@ -3,7 +3,7 @@ import type { APIEvent } from "@solidjs/start/server";
 import { authorizePB } from "~/database/pocketbase";
 
 export async function POST(event: APIEvent, request: Request) {
-  const pb = await authorizePB();
+  const pb = event.locals.pb;
 
   const formData = await request.formData();
   const email = formData.get("email")?.toString();
